@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>moving-button</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <style>
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: pink;
+  }
+
+  .main-con {
+    height: 300px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    
+  }
+
+  .inner-con {
+    text-align: center;
+    position: relative;
+    /* border: 2px solid green; */
+  }
+
+  .btn-con {
+    height: 30px;
+    width: 120px;
+    display: flex;
+    margin-top: 20px;
+    margin-left: 85px;
+  }
+
+  #prg {
+    font-size: 30px;
+  }
+
+  #yesBtn {
+    height: 20px;
+    width: 50px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    color: white;
+    background-color: rgb(78, 234, 78);
+    position: absolute;
+    filter: drop-shadow(0px 0px 20px green);
+  }
+
+  #noBtn {
+    height: 20px;
+    width: 50px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background-color: rgb(228, 66, 66);
+    position: absolute;
+    left: 150px;
+    filter: drop-shadow(0px 0px 20px red);
+  }
+
+  #popup-con {
+    position: fixed;
+    top: 100px;
+    height: 400px;
+    width: 600px;
+    border-radius: 24px;
+    background-image: linear-gradient( rgba(215, 30, 30, 0.199), rgba(92, 92, 213, 0.232)), url("creativevalentinesdaywishes.jpg");
+    background-position: center;
+    background-size: 100% 100%;
+    filter: drop-shadow(0px 0px 40px rgb(255, 255, 255));
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  #yesBtn:hover {
+    animation: bounce 1s 1 linear;
+  }
+
+  @keyframes bounce {
+
+    0%{
+      transform: translateY(0px);
+    }
+
+    25%{
+      transform: translateY(10px);
+    }
+
+    50%{
+      transform: translateY(-10px);
+    }
+
+    100%{
+      transform: translateY(0px);
+    }
+    
+  }
+
+  </style>
+  <body>
+    <div class="main-con">
+      <div class="inner-con">
+        <h3 id="prg">will you be my valentine...💕💖</h3>
+
+        <div class="btn-con">
+          <div>
+            <button id="yesBtn">Yes</button>
+          </div>
+          <div>
+            <button id="noBtn">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden" id="popup-con"></div>
+
+    <script>
+      const yesBtnEl = document.getElementById("yesBtn");
+      yesBtnEl.style.display = "inline";
+      const noBtnEl = document.getElementById("noBtn");
+      noBtnEl.style.display = "inline";
+
+      const popupConEl = document.getElementById("popup-con");
+
+      noBtnEl.addEventListener("mouseover", () => {
+        const sign = ["+", "-", "+", "-"];
+
+        const i = Math.floor(Math.random() * 4);
+
+        console.log(i);
+        const j = Math.floor(Math.random() * 4);
+
+        let distanceX =
+          Math.ceil((Math.random() * window.innerWidth) / 2.2) + 20;
+        let distanceY =
+          Math.ceil((Math.random() * window.innerHeight) / 2.5) + 20;
+        noBtnEl.style.marginLeft = sign[i] + distanceX + "px";
+        noBtnEl.style.marginTop = sign[j] + distanceY + "px";
+
+        console.log(distanceX);
+
+        console.log("i = " + i);
+        console.log("j = " + j);
+        console.log(i);
+        console.log(sign[i]);
+        console.log(sign[j]);
+      });
+
+      yesBtnEl.addEventListener("click", () => {
+        popupConEl.classList.remove("hidden");
+      });
+    </script>
+  </body>
+</html>
